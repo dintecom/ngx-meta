@@ -1,103 +1,52 @@
 {
   "name": "ngx-meta",
   "version": "0.0.0",
-  "description": "Dynamic page title & meta tags utility for Angular (w/server-side rendering)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fulls1z3/ngx-meta.git"
-  },
-  "keywords": [],
-  "author": {
-    "name": "Burak Tasci",
-    "email": "mail@buraktasci.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fulls1z3/ngx-meta/issues"
-  },
-  "homepage": "https://github.com/fulls1z3/ngx-meta#readme",
   "scripts": {
-    "clean": "rimraf dist",
-    "build:core": "ts-node tools/build/packager.ts core",
-    "build": "npm run build:core",
-    "lint": "tslint -p ./tsconfig.lint.json --force",
-    "lint:check": "tslint-config-prettier-check ./tslint.lint.json",
-    "rebuild": "npm run clean && npm run build",
-    "ci:before": "greenkeeper-lockfile-update",
-    "ci:after": "greenkeeper-lockfile-upload",
-    "test": "jest --runInBand --colors",
-    "test:ci": "jest --ci --updateSnapshot --colors",
-    "release": "standard-version"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "lint": "ng lint",
+    "test": "ng test",
+    "release": "cd projects/ngx-meta/core && standard-version"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.0.3",
+    "@angular/common": "~12.0.3",
+    "@angular/compiler": "~12.0.3",
+    "@angular/core": "~12.0.3",
+    "@angular/forms": "~12.0.3",
+    "@angular/platform-browser": "~12.0.3",
+    "@angular/platform-browser-dynamic": "~12.0.3",
+    "@angular/router": "~12.0.3",
+    "rxjs": "~6.6.7",
+    "tslib": "^2.2.0",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular/common": "^9.1.0",
-    "@angular/compiler": "^9.1.0",
-    "@angular/compiler-cli": "^9.1.0",
-    "@angular/core": "^9.1.0",
-    "@angular/platform-browser": "^9.1.0",
-    "@angular/platform-browser-dynamic": "^9.1.0",
-    "@angular/router": "^9.1.0",
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@types/jest": "^23.3.14",
-    "@types/lodash": "^4.14.150",
-    "@types/node": "^10.0.0",
-    "angular-tslint-rules": "^1.20.4",
-    "codelyzer": "^5.2.2",
-    "cz-conventional-changelog": "^3.1.0",
-    "husky": "^4.2.0",
-    "jest": "^23.6.0",
-    "jest-junit-reporter": "^1.1.0",
-    "jest-preset-angular": "8.1.2",
-    "lerna": "^3.20.2",
-    "lint-staged": "^10.0.0",
-    "lodash": "^4.17.15",
-    "ng-packagr": "^9.0.0",
-    "prettier": "1.19.1",
-    "prettier-tslint": "^0.4.2",
-    "reflect-metadata": "^0.1.13",
-    "request": "^2.88.2",
-    "rimraf": "^3.0.2",
-    "rxjs": "~6.5.4",
-    "ts-node": "^8.9.0",
-    "tsickle": "^0.38.0",
-    "tslint": "^5.20.1",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "~3.8.3",
-    "zone.js": "^0.10.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupTestFrameworkScriptFile": "./tools/test/jest.setup.ts",
-    "testResultsProcessor": "./node_modules/jest-junit-reporter",
-    "testMatch": [
-      "**/+(*.)+(spec|test).+(ts|js)?(x)"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "./tsconfig.json"
-      },
-      "__TRANSFORM_HTML__": true
-    },
-    "moduleNameMapper": {
-      "^@ngx-meta/core": "<rootDir>/packages/@ngx-meta/core/src/index.ts"
-    },
-    "cache": false,
-    "silent": true,
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "packages/@ngx-meta/core/src/**.ts"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "@angular-devkit/build-angular": "~12.0.3",
+    "@angular-eslint/builder": "12.1.0",
+    "@angular-eslint/eslint-plugin": "12.1.0",
+    "@angular-eslint/eslint-plugin-template": "12.1.0",
+    "@angular-eslint/schematics": "12.1.0",
+    "@angular-eslint/template-parser": "12.1.0",
+    "@angular/cli": "~12.0.3",
+    "@angular/compiler-cli": "~12.0.3",
+    "@types/jasmine": "~3.7.6",
+    "@types/node": "^15.9.0",
+    "@typescript-eslint/eslint-plugin": "4.26.0",
+    "@typescript-eslint/parser": "4.26.0",
+    "eslint": "^7.27.0",
+    "jasmine-core": "~3.7.1",
+    "karma": "~6.3.3",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.0.3",
+    "karma-jasmine": "~4.0.1",
+    "karma-jasmine-html-reporter": "^1.6.0",
+    "ng-packagr": "^12.0.2",
+    "prettier": "2.3.0",
+    "prettier-plugin-organize-imports": "2.1.0",
+    "standard-version": "^9.3.0",
+    "typescript": "~4.2.4"
   }
 }
