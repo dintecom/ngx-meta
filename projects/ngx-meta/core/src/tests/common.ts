@@ -99,7 +99,9 @@ export const testSettings: MetaSettings = {
 export const testModuleConfig = (moduleOptions?: any) => {
   TestBed.resetTestEnvironment();
 
-  TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting()).configureTestingModule({
+  TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting(), {
+    teardown: { destroyAfterEach: false },
+  }).configureTestingModule({
     imports: [RouterTestingModule.withRoutes(testRoutes), MetaModule.forRoot(moduleOptions)],
     declarations: [TestBootstrapComponent, TestComponent],
   });

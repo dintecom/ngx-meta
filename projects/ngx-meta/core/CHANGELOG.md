@@ -1,7 +1,16 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [13.0.0](https://github.com/fulls1z3/ngx-meta/compare/v9.0.0...v14.0.0) (2022-04-18)
+
+### ⚠ BREAKING CHANGES
+
+- **package:** Support only Angular 12 and 13
+
+### Features
+
+- **package:** Migrate to Angular 13 ([#210](https://github.com/fulls1z3/ngx-meta/issues/210)) ([ac37f91](https://github.com/fulls1z3/ngx-meta/commit/ac37f910fc4481e80fe2a8d7df53f3d641bdc8cc))
 
 # [9.0.0](https://github.com/fulls1z3/ngx-meta/compare/v8.1.0...v9.0.0) (2020-04-27)
 
