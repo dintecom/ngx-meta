@@ -28,7 +28,7 @@ describe('@ngx-meta/core:', () => {
         useFactory: metaFactory,
       });
 
-      const meta = TestBed.get(MetaService);
+      const meta = TestBed.inject(MetaService);
 
       expect(MetaStaticLoader).toBeDefined();
       expect(meta.loader).toBeDefined();
@@ -47,7 +47,7 @@ describe('@ngx-meta/core:', () => {
         useClass: CustomLoader,
       });
 
-      const meta = TestBed.get(MetaService);
+      const meta = TestBed.inject(MetaService);
 
       expect(CustomLoader).toBeDefined();
       expect(meta.loader).toBeDefined();

@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Provider } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MetaGuard, MetaModule, MetaService, MetaSettings, PageTitlePositioning } from '../public-api';
+import { MetaGuard, MetaService, MetaSettings, PageTitlePositioning, provideEnvironmentMeta } from '../public-api';
 
-@Component({ template: '<router-outlet></router-outlet>' })
+@Component({
+  template: '<router-outlet></router-outlet>',
+})
 export class TestBootstrapComponent {
   constructor(private readonly meta: MetaService) {}
 }
@@ -96,13 +98,16 @@ export const testSettings: MetaSettings = {
   },
 };
 
-export const testModuleConfig = (moduleOptions?: any) => {
+export const testModuleConfig = (moduleOptions?: Provider) => {
   TestBed.resetTestEnvironment();
 
   TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting(), {
     teardown: { destroyAfterEach: false },
-  }).configureTestingModule({
-    imports: [RouterTestingModule.withRoutes(testRoutes), MetaModule.forRoot(moduleOptions)],
+  });
+
+  TestBed.configureTestingModule({
+    providers: [provideEnvironmentMeta(moduleOptions)],
+    imports: [RouterTestingModule.withRoutes(testRoutes)],
     declarations: [TestBootstrapComponent, TestComponent],
   });
 };
