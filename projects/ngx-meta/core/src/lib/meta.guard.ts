@@ -1,22 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot } from '@angular/router';
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateChildFn, CanActivateFn, RouterStateSnapshot } from '@angular/router';
 import { MetaService } from './meta.service';
+import { MetaRouteSettings } from './models/meta-route-settings';
 
-@Injectable()
-export class MetaGuard implements CanActivate, CanActivateChild {
-  constructor(private readonly meta: MetaService) {}
+export function metaGuard(settings?: MetaRouteSettings): CanActivateFn | CanActivateChildFn {
+  return (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+    const metaSettings = settings ?? ((route.hasOwnProperty('data') ? route.data['meta'] : undefined) as MetaRouteSettings);
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const url = state.url;
-
-    const metaSettings = route.hasOwnProperty('data') ? route.data['meta'] : undefined;
-
-    this.meta.update(url, metaSettings);
-
+    inject(MetaService).update(state.url, metaSettings);
     return true;
-  }
-
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.canActivate(route, state);
-  }
+  };
 }

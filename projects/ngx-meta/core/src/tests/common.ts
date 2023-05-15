@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MetaGuard, MetaService, MetaSettings, PageTitlePositioning, provideEnvironmentMeta } from '../public-api';
+import { metaGuard, MetaService, MetaSettings, PageTitlePositioning, provideEnvironmentMeta } from '../public-api';
 
 @Component({
   template: '<router-outlet></router-outlet>',
@@ -18,12 +18,12 @@ export class TestComponent {}
 const testRoutes: Routes = [
   {
     path: '',
-    canActivateChild: [MetaGuard],
+    canActivateChild: [metaGuard()],
     children: [
       {
         path: '',
         component: TestBootstrapComponent,
-        canActivateChild: [MetaGuard],
+        canActivateChild: [metaGuard()],
         children: [
           {
             path: 'duck',

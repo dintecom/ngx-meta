@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { from as observableFrom, Observable, of as observableOf } from 'rxjs';
 import { MetaLoader } from './meta.loader';
+import { MetaRouteSettings } from './models/meta-route-settings';
 import { MetaSettings } from './models/meta-settings';
 import { PageTitlePositioning } from './models/page-title-positioning';
 import { isObservable, isPromise } from './util';
@@ -16,7 +17,7 @@ export class MetaService {
     this.isMetaTagSet = {};
   }
 
-  setTitle(title: string, override = false): void {
+  setTitle(title?: string, override = false): void {
     const title$ = title ? this.callback(title) : observableOf('');
 
     title$.subscribe(res => {
@@ -62,7 +63,7 @@ export class MetaService {
     });
   }
 
-  update(currentUrl: string, metaSettings?: any): void {
+  update(currentUrl: string, metaSettings?: MetaRouteSettings): void {
     if (!metaSettings) {
       const fallbackTitle = this.settings.defaults?.title || this.settings.applicationName || '';
 
@@ -154,7 +155,7 @@ export class MetaService {
     });
   }
 
-  private updateLocales(currentLocale: string, availableLocales: string): void {
+  private updateLocales(currentLocale?: string, availableLocales?: string): void {
     const cur = currentLocale || this.settings.defaults?.['og:locale'] || '';
 
     if (cur && this.settings.defaults) {
